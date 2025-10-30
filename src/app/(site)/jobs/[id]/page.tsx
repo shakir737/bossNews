@@ -47,7 +47,7 @@ const [data, count, allJobs] = await prisma.$transaction([
                             <div  className="mb-4 flex justify-between inline-block text-xl font-semibold text-dark hover:text-primary dark:text-black dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">
                               <span>{data[0].jobTitle}</span>    <span>{data[0].job?.city}</span>
                             </div>
-                             <div className="flex flex-col md:flex-row">
+                             <div className="flex flex-col">
                              <div>
                                  Date: <span className="">
                                 {data[0].openingDate?.getDate()}/10/2025
