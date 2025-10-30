@@ -69,6 +69,12 @@ const [data, count, allJobs] = await prisma.$transaction([
                            <div>
                                    <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].keyPoints}</p>
                            </div>
+                            <div>
+                                   <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].niceToHave}</p>
+                           </div>
+                            <div>
+                                   <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].salary}</p>
+                           </div>
                            <div>
                             <span>To Apply Against This Job Please Send Your Resume At: {data[0].job?.email}</span>
                            </div>
