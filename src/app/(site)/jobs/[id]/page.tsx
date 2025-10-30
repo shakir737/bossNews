@@ -64,6 +64,9 @@ const [data, count, allJobs] = await prisma.$transaction([
                                    <p className="text-base text-body-color mt-3 dark:text-dark-6">{data[0].jobDescription}</p>
                            </div>
                            <div>
+                                   <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].jobEducation}</p>
+                           </div>
+                            <div>
                                    <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].jobRequirment}</p>
                            </div>
                            <div>
