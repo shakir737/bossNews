@@ -21,8 +21,7 @@ export default function DashboardLayout({
         <head /> will contain the components returned by the nearest parent
         head.js. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1685818630286592"
-     crossOrigin="anonymous"></script>
+     <meta name="google-adsense-account" content="ca-pub-1685818630286592" />
       <head />
 
       <body>
