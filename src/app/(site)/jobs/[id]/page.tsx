@@ -43,11 +43,11 @@ const [data, count, allJobs] = await prisma.$transaction([
                   <div className="blog-details xl:pr-10">
                     <div>{
                       count > 0 ? (
-                        <div className="flex flex-col">
-                            <div  className="mb-4 inline-block text-xl font-semibold text-dark hover:text-primary dark:text-black dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">
-                              {data[0].jobTitle}
+                        <div className="flex flex-col ">
+                            <div  className="mb-4 flex justify-between inline-block text-xl font-semibold text-dark hover:text-primary dark:text-black dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">
+                              <span>{data[0].jobTitle}</span>    <span>{data[0].job?.city}</span>
                             </div>
-                             <div className="flex  md:justify-between">
+                             <div className="flex md:justify-between">
                              <div>
                                  Date: <span className="">
                                 {data[0].openingDate?.getDate()}/10/2025
@@ -64,19 +64,19 @@ const [data, count, allJobs] = await prisma.$transaction([
                                    <p className="text-base text-body-color mt-3 dark:text-dark-6">{data[0].jobDescription}</p>
                            </div>
                            <div>
-                                   <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].jobEducation}</p>
+                                   <p className="text-base text-body-color dark:text-dark-6">{data[0].jobEducation}</p>
                            </div>
                             <div>
-                                   <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].jobRequirment}</p>
+                                   <p className="text-base text-body-color dark:text-dark-6">{data[0].jobRequirment}</p>
                            </div>
                            <div>
-                                   <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].keyPoints}</p>
+                                   <p className="text-base text-body-color dark:text-dark-6">{data[0].keyPoints}</p>
                            </div>
                             <div>
-                                   <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].niceToHave}</p>
+                                   <p className="text-base text-body-color dark:text-dark-6">{data[0].niceToHave}</p>
                            </div>
                             <div>
-                                   <p className="text-base text-body-color mt-1 dark:text-dark-6">{data[0].salary}</p>
+                                   <p className="text-base text-body-color dark:text-dark-6">{data[0].salary}</p>
                            </div>
                            <div>
                             <span>To Apply Against This Job Please Send Your Resume At: {data[0].job?.email}</span>
