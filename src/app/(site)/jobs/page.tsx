@@ -1,5 +1,7 @@
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import SingleJob from "@/components/Jobs/SingleJob";
+import UserSelectionForm from "@/components/Search";
+import SelectField from "@/components/Select";
 import prisma from "@/utils/prismaDB";
 import { Category, Job, JobDetail, Prisma } from "@prisma/client";
 
@@ -31,16 +33,17 @@ const { page, ...queryParams } = resolvedSearchParams;
   const p = page ? parseInt(page) : 1;
 
   // URL PARAMS CONDITION
-
+  const relationFilter: any = {};
   const query: Prisma.JobDetailWhereInput = {};
-
+  
 if (queryParams) {
     for (const [key, value] of Object.entries(queryParams)) {
       if (value !== undefined) {
         switch (key) {
-          case "search":
-            query.jobDescription = { contains: value, mode: "insensitive" };
-            break;
+           case "category":
+            query.categoryId = { contains: value, mode: "insensitive" };
+          
+          break;
           default:
             break;
         }
@@ -59,11 +62,18 @@ const [data, count] = await prisma.$transaction([
      prisma.jobDetail.count({ where: query}),
    ]);
 
+   const [category, categoryCount] = await prisma.$transaction([
+     prisma.category.findMany(),
+     prisma.category.count(),
+   ]);
   return (
     <>
       <Breadcrumb pageName="All Jobs" />
 
-      <section className="pb-10 pt-20 lg:pb-20 lg:pt-[120px]">
+      <section className="pb-10 pt-10 lg:pb-10 lg:pt-[12px]">
+        <div>
+         <UserSelectionForm categories={category}/>
+        </div>
         <div className="container">
           <div className="-mx-4 flex flex-wrap justify-center">
             { 
