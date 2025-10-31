@@ -28,7 +28,7 @@ export default function RootLayout({
         <head /> will contain the components returned by the nearest parent
         head.js. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
-     <meta name="google-adsense-account" content="ca-pub-1685818630286592" />
+   <meta name="monetag" content="e8d7e2ba2dac53e70157dd12a56512e3" />
       <head />
 
       <body>
