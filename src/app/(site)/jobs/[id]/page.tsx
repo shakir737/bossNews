@@ -29,7 +29,7 @@ const [data, count, allJobs] = await prisma.$transaction([
       }
      ),
    ]);
-
+   data[0].openingDate?.setMonth(data[0].openingDate?.getMonth() + 1)
   return (
     <>
       <Breadcrumb pageName="Job Details" />
@@ -50,7 +50,7 @@ const [data, count, allJobs] = await prisma.$transaction([
                              <div className="flex flex-col">
                              <div>
                                  Date: <span className="">
-                                {data[0].openingDate?.getDate()}/10/2025
+                                {data[0].openingDate?.getDate()}/{data[0].openingDate?.getMonth()}/2025
                                  </span>
                               </div>
                               <div>
