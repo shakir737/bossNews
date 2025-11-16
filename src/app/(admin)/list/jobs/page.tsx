@@ -61,12 +61,6 @@ export default async function SubjectListPage  ({ params, searchParams }: Props)
         <div className="flex items-center gap-2">
           {"admin" === "admin" && (
             <>
-              <Link href={`/list/jobs/${item.id}`}>
-             <button className="w-7 h-7 flex items-center justify-center rounded-full bg-lamaSky">
-               <Image src="/view.png" alt="" width={16} height={16} />
-             </button>
-           </Link>
-           
               <FormContainer table="jobDetail" type="update" data={item} />
               <FormContainer table="jobDetail" type="delete" id={item.id} />
             </>

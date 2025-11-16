@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import InputField from "../InputField";
 import { JobDetailSchema, jobDetailSchema} from "@/utils/formValidationSchemas";
-import { createJob, createJobDetail} from "@/utils/actions";
+import { createJob, createJobDetail, updateJobDetail} from "@/utils/actions";
 import { useFormState } from "react-dom";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -32,15 +32,20 @@ const JobForm = ({
   // AFTER REACT 19 IT'LL BE USEACTIONSTATE
 
   const [state, formAction] = useFormState(
-    type === "create" ? createJobDetail : createJobDetail,
+    type === "create" ? createJobDetail : updateJobDetail,
     {
       success: false,
       error: false,
     }
   );
 
-  const onSubmit = handleSubmit((data) => {
-    formAction(data);
+  const onSubmit = handleSubmit((result) => {
+    formAction(result);
+    if(type === "update"){
+     const id = data.id
+     const updateData = {...result, id};
+     formAction(updateData);
+    }
   
   });
 
@@ -113,7 +118,13 @@ const JobForm = ({
           register={register}
           error={errors?.salary}
         />
-
+        <InputField
+          label="City"
+          name="city"
+          defaultValue={data?.city}
+          register={register}
+          error={errors?.city}
+        />
        <div className="flex flex-col gap-2 w-full md:w-1/4">
           <label className="text-xs text-gray-500">Job Category</label>
           <select

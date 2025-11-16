@@ -28,6 +28,7 @@ export const jobDetailSchema = z.object({
   niceToHave: z.string().min(5, { message: "niceToHave is required" }),
   salary: z.string().min(4, { message: "Salary is required" }),
   expires: z.string().optional(),
+  city: z.string().optional(),
   endDate: z.string().optional(),
   categoryId: z.string(),
   jobId: z.string(),

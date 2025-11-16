@@ -49,6 +49,41 @@ export const createJobDetail = async (
        jobId: data.jobId,
        expires: data.expires,
        categoryId: data.categoryId,
+       city: data.city,
+       endDate: data.endDate
+      },
+    });
+
+    
+    return { success: true, error: false };
+  } catch (err) {
+    console.log(err);
+    return { success: false, error: true };
+  }
+};
+
+export const updateJobDetail = async (
+  currentState: CurrentState,
+  data: JobDetailSchema
+) => {
+  try {
+    await Prisma.jobDetail.update({
+       where: {
+                // The unique identifier for the record to be updated
+                id: data.id,
+        },
+      data: {
+       jobTitle: data.jobTitle,
+       jobDescription: data.jobDescription,
+       jobEducation: data.jobEducation,
+       jobRequirment: data.jobRequirment,
+       keyPoints: data.keyPoints,
+       salary: data.salary,
+       niceToHave: data.niceToHave,
+       jobId: data.jobId,
+       expires: data.expires,
+       categoryId: data.categoryId,
+       city: data.city,
        endDate: data.endDate
       },
     });

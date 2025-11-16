@@ -17,8 +17,22 @@ export type FormContainerProps = {
 
 const FormContainer = async ({ table, type, data, id, user, jobId}: FormContainerProps) => {
   let relatedData = {};
-
-
+  // let data = {}
+  // if (type === "update") {
+  //   switch (table) {
+  //      case "jobDetail":
+       
+  //        const jobList = prisma.jobDetail.findUnique({
+  //         where: { id: id}
+  //   })
+  //      data = jobList;
+  //      console.log(id);
+  //      console.log(jobList);
+  //      break;
+  //     default:
+  //       break;
+  //   }
+  // }
   if (type !== "delete") {
     switch (table) {
        case "jobDetail":
@@ -64,7 +78,7 @@ const FormContainer = async ({ table, type, data, id, user, jobId}: FormContaine
         break;
     }
   }
-
+   
   return (
     <div className="">
       <FormModal

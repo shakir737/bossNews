@@ -71,6 +71,7 @@ model JobDetail {
   salary           String
   jobId            String
   expires          DateTime?
+  city             String?
   categoryId       String
   openingDate     DateTime?  @default(now())
   endDate        DateTime?

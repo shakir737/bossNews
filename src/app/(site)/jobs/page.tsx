@@ -4,9 +4,11 @@ import UserSelectionForm from "@/components/Search";
 import SelectField from "@/components/Select";
 import prisma from "@/utils/prismaDB";
 import { Category, Job, JobDetail, Prisma } from "@prisma/client";
-
+import { ITEM_PER_PAGE } from "@/utils/settings";
 
 import { Metadata } from "next";
+import Pagination from "@/components/Pagination";
+
 
 export const metadata: Metadata = {
   title:
@@ -22,14 +24,14 @@ export const metadata: Metadata = {
       params: Promise<MyPageParams>; // params are now promises
       searchParams: Promise<{ [key: string]: string  | undefined }>; // searchParams are also promises
     };
-type JobList = JobDetail & { category: Category , job: Job } ;
+
 
 export default async function page  ({ params, searchParams }: Props) {
    const resolvedParams = await params;
  const resolvedSearchParams = await searchParams;
 
 const { page, ...queryParams } = resolvedSearchParams;
-
+  const {city} = queryParams;
   const p = page ? parseInt(page) : 1;
 
   // URL PARAMS CONDITION
@@ -44,20 +46,25 @@ if (queryParams) {
             query.categoryId = { contains: value, mode: "insensitive" };
           
           break;
+          case "city":
+          // Assuming 'job' is a related model
+          query.city = { contains: value, mode: "insensitive"};
+          break;
           default:
             break;
         }
       }
     }
   }
-
 const [data, count] = await prisma.$transaction([
      prisma.jobDetail.findMany({
-       where: query,
+       where:  query,
        include: {
         category: true,
         job: true 
        },
+       take: ITEM_PER_PAGE,
+       skip: ITEM_PER_PAGE * (p - 1),
      }),
      prisma.jobDetail.count({ where: query}),
    ]);
@@ -84,6 +91,7 @@ const [data, count] = await prisma.$transaction([
                 <SingleJob jobDetail={job} />
               </div>
             ))}
+           
                 </>
               ) : (
                 <div>
@@ -94,6 +102,16 @@ const [data, count] = await prisma.$transaction([
            
           </div>
         </div>
+         { 
+              count > 0 ? (
+                <>
+             <Pagination page={p} count={count} />
+                </>
+              ) : (
+                <div>
+                </div>
+              )
+            }
       </section>
     </>
   );
