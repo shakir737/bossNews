@@ -50,7 +50,7 @@ const [data, count, allJobs] = await prisma.$transaction([
                              <div className="flex flex-col">
                              <div>
                                  Date: <span className="">
-                                {data[0].openingDate?.getDate()}/{data[0].openingDate?.getMonth()}/2025
+                                {data[0].openingDate?.getDate()}/{data[0].openingDate?.getMonth() === 0 ? 12 : data[0].openingDate?.getMonth()}/2025
                                  </span>
                               </div>
                               <div>

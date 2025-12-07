@@ -4,7 +4,7 @@ import { Category, Job, JobDetail } from '@prisma/client';
 type JobList = JobDetail & { category: Category , job: Job } ;
 const SingleJob = async ({ jobDetail }: { jobDetail: JobList }) => {
   const { jobTitle, jobDescription, jobEducation, keyPoints, id, job, openingDate, category } = jobDetail;
-  openingDate?.setMonth(openingDate.getMonth() + 1)
+  openingDate?.setMonth(openingDate.getMonth() + 1);
   return (
     <div className="mb-10 border border-indigo-600 bg-indigo-600 rounded-md">
       <div className="p-7 bg-white dark:text-black">
@@ -19,7 +19,7 @@ const SingleJob = async ({ jobDetail }: { jobDetail: JobList }) => {
         <div className="flex flex-col">
           <div>
             Date: <span className="">
-          {openingDate?.getDate()}/{openingDate?.getMonth()}/{openingDate?.getFullYear()}
+          {openingDate?.getDate()}/{openingDate?.getMonth() === 0 ? 12 : openingDate?.getMonth()}/{openingDate?.getFullYear()}
         </span>
           </div>
           <div>
