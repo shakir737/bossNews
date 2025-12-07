@@ -12,6 +12,7 @@ const cityOptions = [
   { id: 'Islamabad', name: 'Islamabad' },
   { id: 'Lahore', name: 'Lahore' },
   { id: 'Karachi', name: 'Karachi' },
+  { id: 'Remote', name: 'Remote' },
 ];
 export default function UserSelectionForm({categories}: {categories: any}) {
  const [category, setCategory] = useState("All Categories");
