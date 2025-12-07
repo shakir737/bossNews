@@ -59,6 +59,9 @@ if (queryParams) {
 const [data, count] = await prisma.$transaction([
      prisma.jobDetail.findMany({
        where:  query,
+       orderBy: {
+         openingDate: 'desc', // 'asc' for ascending order, 'desc' for descending
+       },
        include: {
         category: true,
         job: true 
