@@ -15,16 +15,15 @@ export const metadata: Metadata = {
     "All Available Jobs By Category",
   description: "All Available Jobs By Category",
 };
-  // Define your specific route parameters if needed
+
     type MyPageParams = {
     
     };
-        // Define the props for your server component
+
     type Props = {
       params: Promise<MyPageParams>; // params are now promises
       searchParams: Promise<{ [key: string]: string  | undefined }>; // searchParams are also promises
     };
-
 
 export default async function page  ({ params, searchParams }: Props) {
    const resolvedParams = await params;
